@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Just Monika Hash</h3>
+
+<input type="text" id="myText" value="Just Monika">
+
+<p>Enter Text in the above field to Hash</p>
+
+<button onclick="myFunction()">Hash It</button>
+
+<p id="demo"></p>
+
+<script>
+const sdbm = str => {
+  let arr = str.split('');
+  return arr.reduce((hashCode, currentVal) => (hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode), 0);
+};
+function numtojm(num){
+	let J = ["j","J","\u0458","\u029d"];
+	let U = ["u","U","\u03c5","\u057d","\u00fc","\u00fa","\u00f9"];
+	let S = ["s","S","\u0282"];
+	let T = ["t","T"];
+	let M = ["m","M"];
+	let O = ["o","O","0","\u043e","\u03bf","\u0585","\u022f", "\u1ecd","\u1ecf","\u01a1","\u00f6","\u00f3","\u00f2"];
+	let N = ["n","N","\u0578"];
+	let I = ["i","I","1","!","\u04cf","\u1e37"];
+	let K = ["k","K","\u03ba"];
+	let A = ["a","A","\u0430","\u00e0","\u00e1","\u1ea1","\u0105"];
+	let defchar = ["\u03B1","\u03B2","\u03B3","\u03B4","\u03B5","\u03B6","\u03B7","\u03B8"];
+	var minus_flag = 0;
+	if(num<0){
+		minus_flag = 1;
+		}
+	num = Math.abs(num)
+	var digits = (""+num).split("");
+	let arr = [];
+	for(let counter=0; counter<digits.length; counter++){
+		//switch(parseInt(digits[counter])){
+		switch(counter){
+		case 0:
+			arr[counter] = J[(parseInt(digits[counter]))%(J.length)];
+			break;
+		case 1:
+			arr[counter] = U[(parseInt(digits[counter]))%(U.length)];
+			break;
+		case 2:
+			arr[counter] = S[(parseInt(digits[counter]))%(S.length)];
+			break;
+		case 3:
+			arr[counter] = T[(parseInt(digits[counter]))%(T.length)];
+			break;
+		case 4:
+			arr[counter] = M[(parseInt(digits[counter]))%(M.length)];
+			break;
+		case 5:
+			arr[counter] = O[(parseInt(digits[counter]))%(O.length)];
+			break;
+		case 6:
+			arr[counter] = N[(parseInt(digits[counter]))%(N.length)];
+			break;
+		case 7:
+			arr[counter] = I[(parseInt(digits[counter]))%(I.length)];
+			break;
+		case 8:
+			arr[counter] = K[(parseInt(digits[counter]))%(K.length)];
+			break;
+		case 9:
+			arr[counter] = A[(parseInt(digits[counter]))%(A.length)];
+			break;
+		default:
+			arr[counter] = defchar[(parseInt(digits[counter]))%(defchar.length)];
+			break;
+	}
+	}
+	if(minus_flag == 0){
+		arr.splice(0, 0, defchar[(parseInt(digits[0]))%(defchar.length)]);
+	}
+return arr.toString();
+//return arr;
+}
+function myFunction() {
+	
+    var hash = 0;
+    var x = document.getElementById("myText").value;
+    for(let i=0 ; x.length<128 ; i++){
+    	x += "JUSTMONIKA"
+		}
+    x = x.substring(0,128);
+	hash = sdbm(x);
+	let hashp = numtojm(hash);
+	hashp = hashp.replace(/,/g,'');
+  	document.getElementById("demo").innerHTML = hashp;
+}
+</script>
+
+</body>
+</html>
