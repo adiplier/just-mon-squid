@@ -1,0 +1,16 @@
+<html>
+    <body>
+      <h1>Just Monika Brainfuck derivative</h1>
+      <h3>Brainfuck to Just Monika</h3>
+      <textarea id="convertin" cols="40" rows="10"></textarea>
+      <button style="display:block;" onClick="toInput(symboltotext(document.getElementById('convertin').value))">Convert</button>
+      <h3>input</h3>
+      <textarea id="input" cols="40" rows="10"></textarea>
+      <button style="display:block;" onClick="compile(txttosymbol(document.getElementById('input').value))">Compile</button>
+
+      <h3>output</h3>
+      <textarea id="output" cols="40" rows="10"></textarea>
+
+      <script src="./jmbf.js" type="text/javascript"></script>
+    </body>
+</html>
